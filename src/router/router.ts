@@ -1,5 +1,5 @@
 import { createWebHistory, createRouter } from 'vue-router'
-import indexView from '@/components/index.vue'
+import Index from '@/components/index.vue'
 import UserManager from "@/view/user/UserManager.vue"
 import LoginView from "@/view/Login.vue"
 //@ts-ignore
@@ -7,16 +7,12 @@ import RoleInfo from "@/view/RoleInfo.vue"
 
 const routes = [
     {
-        path: '/',
-        redirect: '/login'
-    },
-    {
         path: '/login',
         component: LoginView
     },
     {
-        path: '/index',
-        component: indexView,
+        path: '/dashboard',
+        component: Index,
         children: [
             { path: 'UserManager', component: UserManager },
             { path: 'RoleInfo', component: RoleInfo },

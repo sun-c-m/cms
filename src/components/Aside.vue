@@ -5,13 +5,13 @@
         <div class="menu-title" @click="toggleMenu(idx)" :class="{active: activeIndex==idx|| (route.path === menu.url)}">
           <div class="left">
             <div class="icon"></div>
-            <router-link :to="menu.url">{{ menu.menuName}}</router-link>
+            <router-link :to="menu.path">{{ menu.name}}</router-link>
           </div>
           <i class="arrow" v-if="idx!=0"></i>
         </div>
         <ul class="submenu" v-if="menu.children.length>0" :class="{show: activeIndex==idx}">
           <li v-for="(secondMenu,index) in menu.children" :key="index">
-            <router-link :to="secondMenu.url">{{ secondMenu.name}}</router-link>
+            <router-link :to="secondMenu.path">{{ secondMenu.name}}</router-link>
           </li>
         </ul>
       </li>
@@ -32,12 +32,38 @@ const toggleMenu = (idx: number) => {
 }
 const activeIndex = ref(0)
 const menuList = ref([
-  {menuName: '首页', url:'/index', children: []},
-  {menuName: '账号管理',url:'',   children: [{name:'查看用户',url:'/index/UserManager'}]},
-  {menuName: '角色管理',url:'',  children: [{name:'查看角色',url:'/index/RoleInfo'}]},
-  {menuName: '权限管理',url:'',  children: [{name:'查看权限',url:''}]},
-  {menuName: '内容管理', url:'',  children: [{name:'新闻管理',url:''}, {name:'公告管理',url:''},{name:'学术管理',url:''} ]}
+  // {id: 1111, name: '首页', url: '/dashboard', children: []},
+  // {
+  //   id: 2222, name: '账号管理', children: [{id: 22220, name: '用户管理', url: '/dashboard/user/userManage'}]
+  // },
+  // {
+  //   id: 3333, name: '角色管理', children: [
+  //     {id: 33330, name: '角色信息', url: '/dashboard/role/roleInfo'}
+  //   ]
+  // },
+  // {
+  //   id: 5555, name: '订单管理', children: [
+  //     {id: 55550, name: '我的订单', url: ''}
+  //   ]
+  // },
+  // {
+  //   id: 6666, name: '发票管理', children: [
+  //     {id: 66660, name: '发票查询', url: ''}
+  //   ]
+  // },
+  // {
+  //   id: 8888, name: '使用记录', children: [
+  //     {id: 88880, name: '数据统计', url: ''},
+  //     {id: 88881, name: '我的信息', url: ''},
+  //     {id: 88882, name: '我的数据', url: ''}
+  //   ]
+  // }
 ])
+onMounted(()=>{
+  const info=localStorage.getItem('info')
+  console.log('这是aside', JSON.parse(info))
+  menuList.value=JSON.parse(info).data.menuTree;
+})
 </script>
 
 <style scoped>

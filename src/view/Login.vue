@@ -70,7 +70,8 @@ const handleSubmit = () => {
         login(form.value).then((data:any) => {
           console.log(data);
           if(data.code==200) {
-            router.push('/index')
+            localStorage.setItem('info', JSON.stringify(data))
+            router.push('/dashboard')
           }
         })
         // 登录成功后可跳转：router.push('/dashboard')

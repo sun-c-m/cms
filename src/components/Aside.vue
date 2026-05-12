@@ -2,7 +2,7 @@
   <aside>
     <ul class="menu">
       <li v-for="(menu,idx) in menuList" :key="idx">
-        <div class="menu-title" @click="toggleMenu(idx)" :class="{active: activeIndex==idx|| (route.path === menu.url)}">
+        <div class="menu-title" @click="toggleMenu(idx)" :class="{active: activeIndex==idx|| (route.path === menu.path)}">
           <div class="left">
             <div class="icon"></div>
             <router-link :to="menu.path">{{ menu.name}}</router-link>

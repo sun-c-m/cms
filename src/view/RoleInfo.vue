@@ -17,7 +17,7 @@
 
       <el-table-column label="操作" width="220">
         <template #default="scope">
-          <el-button size="small" type="primary" @click="handleEdit(scope.row)">编辑</el-button>
+          <el-button size="small" type="primary" @click="handleEdit(scope.row)" :disabled="!permission('role:edit')">编辑</el-button>
           <el-button size="small" type="success" @click="handleAuthorize(scope.row)">授权</el-button>
           <el-button size="small" type="danger" @click="handleDelete(scope.row.id)">删除</el-button>
         </template>
@@ -44,6 +44,7 @@ import {ref, computed, watch, onMounted} from 'vue'
 import { ElMessageBox } from 'element-plus'
 import { debounce } from 'lodash-es'
 import {getRoleInfoPage} from "@/http/role.js";
+import {permission} from "@/util/Permission.js";
 
 // 模拟原始角色数据（实际应来自 API）
 const allRoles = ref([])

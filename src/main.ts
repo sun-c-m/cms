@@ -4,6 +4,8 @@ import 'element-plus/dist/index.css'
 import App from './App.vue'
 import router from "./router/router.ts";
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
+import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
+import { createPinia } from 'pinia'
 
 const elementLocale = {
     ...zhCn,
@@ -18,6 +20,10 @@ const elementLocale = {
     },
 }
 const app=createApp(App);
+
+const pinia = createPinia()
+app.use(pinia)
+pinia.use(piniaPluginPersistedstate)
 
 app.use(ElementPlus, { locale: elementLocale })
 app.use(router);

@@ -21,6 +21,9 @@
 <script setup lang="ts">
 import {onMounted, ref} from 'vue';
 import {useRoute} from "vue-router";
+import {permission} from "@/util/Permission.ts";
+import {useUserStore} from "@/stores/user.ts";
+const userstore = useUserStore();
 const route=useRoute();
 const toggleMenu = (idx: number) => {
   if (activeIndex.value == idx) {
@@ -60,9 +63,9 @@ const menuList = ref([
   // }
 ])
 onMounted(()=>{
-  const info=localStorage.getItem('info')
-  console.log('这是aside', JSON.parse(info))
-  menuList.value=JSON.parse(info).data.menuTree;
+  // const info=localStorage.getItem('info')
+  // console.log('这是aside', JSON.parse(info))
+  menuList.value=userstore.userInfo.menuTree;
 })
 </script>
 

@@ -8,3 +8,9 @@ export const getRoleInfoPage = (data:any) => {
         data
     })
 }
+export const deleteRole = (id: number) => {
+    return axios({
+        url: `/api/role/${id}`,
+        method: 'DELETE'
+    })
+}

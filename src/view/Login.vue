@@ -42,9 +42,11 @@ import { ref } from 'vue'
 import router from '@/router/router'
 import {login} from '@/http/login.ts'
 import type { ElForm } from 'element-plus'
+import {useUserStore} from "@/stores/user.ts";
+
 
 const form = ref({
-  username: 'meng',
+  username: 'sun',
   password: '784250'
 })
 
@@ -70,7 +72,11 @@ const handleSubmit = () => {
         login(form.value).then((data:any) => {
           console.log(data);
           if(data.code==200) {
-            localStorage.setItem('info', JSON.stringify(data))
+            //localStorage.setItem('info', JSON.stringify(data));
+            const userStore = useUserStore();
+// 1. 存入 Token (Action 里会同步到 localStorage)
+            userStore.setToken(data.data.token);
+            userStore.setUserInfo(data.data);
             router.push('/dashboard')
           }
         })

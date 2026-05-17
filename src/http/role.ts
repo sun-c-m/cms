@@ -1,6 +1,6 @@
 
 
-import axios from "./axious.ts";
+import axios from "./axios.ts";
 export const getRoleInfoPage = (data:any) => {
     return axios({
         url:'/api/role/getRoleInfoPage',

@@ -4,6 +4,7 @@ import UserManage from "@/view/user/UserManager.vue"
 import LoginView from "@/view/Login.vue"
 //@ts-ignore
 import RoleInfo from "@/view/RoleInfo.vue"
+import news from "@/view/content/NewsManager.vue"
 
 const routes = [
     {
@@ -18,6 +19,13 @@ const routes = [
             { path: 'RoleInfo', component: RoleInfo },
         ]
     },
+    {
+        path:'/content',
+        component: Index,
+        children: [
+            {path:'news',component: news},
+        ]
+    }
 ]
 
 const router = createRouter({

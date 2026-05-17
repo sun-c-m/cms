@@ -19,6 +19,7 @@ instance.interceptors.request.use((config) => {
     }
     // 只有当方法不是 GET 时，才强制设置 JSON 格式
     if (config.method?.toLowerCase() !== 'get') {
+        config.headers['schoolName'] = 'guet';
         config.headers['Content-Type'] = 'application/json;charset=UTF-8';
     }
     return config;

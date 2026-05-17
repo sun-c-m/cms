@@ -1,5 +1,5 @@
 <template>
-  <aside>
+  <div class="aside">
     <ul class="menu">
       <li v-for="(menu,idx) in menuList" :key="idx">
         <div class="menu-title" @click="toggleMenu(idx)" :class="{active: activeIndex==idx|| (route.path === menu.path)}">
@@ -16,7 +16,7 @@
         </ul>
       </li>
     </ul>
-  </aside>
+  </div>
 </template>
 <script setup lang="ts">
 import {onMounted, ref} from 'vue';
@@ -70,10 +70,16 @@ onMounted(()=>{
 </script>
 
 <style scoped>
-aside {
-  width: 15%;
-  border: 1px solid #DCDCDC;
+.aside {
+  width: 260px;
   background: #fff;
+  border-right: 1px solid #e5e6eb;
+  height: 100vh;
+}
+
+li a {
+  text-decoration: none;
+  color: #999999;
 }
 
 .menu {
@@ -85,10 +91,7 @@ aside {
 .menu > li {
   border-bottom: 1px solid #eee;
 }
-li a{
-  text-decoration: none;
 
-}
 .menu-title {
   display: flex;
   align-items: center;
@@ -175,5 +178,4 @@ li a{
 .submenu.show {
   display: block;
 }
-
 </style>

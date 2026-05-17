@@ -3,15 +3,15 @@
 </script>
 
 <template>
-<div>
+<div class="main">
 <router-view></router-view>
 </div>
 </template>
 
 <style scoped>
-main{
-  flex: 7;
-  border: 1px solid #DCDCDC;
+.main{
+  height: 100%;
+  flex: 6;
 }
 
 </style>
